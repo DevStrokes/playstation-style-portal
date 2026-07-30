@@ -1,14 +1,16 @@
-# Welcome to your Lovable project
+# PlayStation Style Portal
+
+Erstelle mir eine moderne Website im playstation look mit einem geschützten Mitgliederbereich. Baue ein Login-Formular ein, das Supabase für die Authentifizierung nutzt (inklusive Google und Apple Login) der Login soll nicht erforderlich sein, sondern per button
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/8000082a-ef7e-4a66-959b-6c3166fbf501).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +22,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
