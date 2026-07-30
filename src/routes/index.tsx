@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Zap, ShieldCheck, Gamepad2, Wrench, Cpu, BatteryCharging } from "lucide-react";
 import heroImage from "@/assets/hero.jpg";
 import { Button } from "@/components/ui/button";
@@ -8,16 +8,17 @@ import { Reviews } from "@/components/Reviews";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tech Doctor Play — Gaming Hub im Konsolen-Look" },
+      { title: "Tech Doctor — Controller Reparatur & Modding" },
       {
         name: "description",
         content:
-          "Tech Doctor Play ist der Gaming-Hub mit Bibliothek, Trophäen und geschütztem Mitgliederbereich. Anmeldung optional — per Klick.",
+          "Tech Doctor bietet professionelle Controller-Reparaturen, Modding und Umbauten für DualSense & DualShock – schnell, zuverlässig und mit 2 Jahren Garantie.",
       },
-      { property: "og:title", content: "Tech Doctor Play — Gaming Hub im Konsolen-Look" },
+      { property: "og:title", content: "Tech Doctor — Controller Reparatur & Modding" },
       {
         property: "og:description",
-        content: "Bibliothek, Trophäen und exklusiver Mitgliederbereich. Anmeldung per Klick.",
+        content:
+          "Professionelle Controller-Reparaturen und Modding für DualSense & DualShock. Mit 2 Jahren Garantie.",
       },
     ],
   }),
@@ -87,21 +88,21 @@ function Index() {
           <div className="absolute inset-0 hero-surface opacity-80" />
           <div className="relative mx-auto max-w-6xl px-5 py-28 md:py-40">
             <span className="inline-flex items-center rounded-full border border-primary/40 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-              Next Gen
+              Controller Reparatur
             </span>
             <h1 className="mt-6 max-w-3xl text-5xl font-extrabold leading-[1.05] md:text-7xl">
-              Spiele grenzenlos mit <span className="text-gradient-blue">Tech Doctor Play</span>
+              Dein Controller in <span className="text-gradient-blue">Bestform</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              Deine Bibliothek, deine Trophäen, deine Crew. Stöbere frei — oder melde dich an und
-              betritt den exklusiven Mitgliederbereich.
+              Professionelle Reparaturen, Umbauten und Modding für DualSense & DualShock. Schnell,
+              zuverlässig und mit 2 Jahren Garantie.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild variant="hero" size="xl">
-                <Link to="/auth">Zum Mitgliederbereich</Link>
+                <a href="#dienstleistungen">Zu den Dienstleistungen</a>
               </Button>
               <Button asChild variant="outlineGlow" size="xl">
-                <a href="#games">Spiele entdecken</a>
+                <a href="#rezensionen">Kundenstimmen</a>
               </Button>
             </div>
           </div>
@@ -154,8 +155,76 @@ function Index() {
         <Reviews />
       </main>
 
-      <footer className="border-t border-border/60 py-8 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Tech Doctor Play
+      <footer className="border-t border-border/60 py-12 text-sm text-muted-foreground">
+        <div className="mx-auto max-w-6xl px-5">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-foreground">
+                Impressum
+              </h3>
+              <p className="leading-relaxed">
+                Dilan Wojnicki
+                <br />
+                Kirchstraße 33
+                <br />
+                59269 Beckum
+                <br />
+                <a
+                  href="mailto:doctortech101@gmail.com"
+                  className="hover:text-primary transition-colors"
+                >
+                  doctortech101@gmail.com
+                </a>
+              </p>
+            </div>
+
+            <div>
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-foreground">
+                AGB
+              </h3>
+              <a
+                href="/Tech_Doctor_AGB.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                AGB herunterladen (PDF)
+              </a>
+            </div>
+
+            <div>
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-foreground">
+                Widerruf
+              </h3>
+              <a
+                href="/Tech_Doctor_Widerruf.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                Widerrufsbelehrung (PDF)
+              </a>
+            </div>
+
+            <div>
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-foreground">
+                Datenschutz
+              </h3>
+              <a
+                href="/Tech_Doctor_Datenschutz.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                Datenschutzerklärung (PDF)
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-8 border-t border-border/60 pt-6 text-center">
+            © {new Date().getFullYear()} Techdoctor
+          </div>
+        </div>
       </footer>
     </div>
   );
