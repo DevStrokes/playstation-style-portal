@@ -102,7 +102,7 @@ function Index() {
                 <a href="#dienstleistungen">Zu den Dienstleistungen</a>
               </Button>
               <Button asChild variant="outlineGlow" size="xl">
-                <a href="#rezensionen">Kundenstimmen</a>
+                <a href="mailto:doctortech101@gmail.com">Schreibe eine Anfrage</a>
               </Button>
             </div>
           </div>
