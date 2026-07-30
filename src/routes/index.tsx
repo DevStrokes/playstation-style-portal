@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Zap, ShieldCheck, Trophy, Users } from "lucide-react";
+import { Zap, ShieldCheck, Gamepad2, Wrench, Cpu, BatteryCharging } from "lucide-react";
 import heroImage from "@/assets/hero.jpg";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/SiteHeader";
+import { Reviews } from "@/components/Reviews";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,26 +24,42 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const features = [
+const services = [
+  {
+    icon: Gamepad2,
+    title: "Stickdrift Reparatur",
+    price: "30 €",
+    text: "Professionelle Stickdrift-Reparatur für DualSense & DualShock – mit hochwertigen TMR-Sticks für dauerhafte Präzision.",
+  },
+  {
+    icon: Wrench,
+    title: "Knöpfe / Tasten Reparatur",
+    price: "19 €",
+    text: "Defekte oder klebrige Tasten auf deinem Controller werden professionell repariert oder ausgetauscht.",
+  },
   {
     icon: Zap,
-    title: "Sofort spielbereit",
-    text: "Blitzschnelle Ladezeiten und ein Interface, das sich wie eine Konsole anfühlt.",
+    title: "Trigger Reparatur",
+    price: "15 €",
+    text: "L1, L2, R1, R2 – defekte oder klemmende Trigger werden schnell und zuverlässig repariert.",
   },
   {
-    icon: Trophy,
-    title: "Trophäen & Ränge",
-    text: "Sammle Auszeichnungen und verfolge deinen Fortschritt in Echtzeit.",
+    icon: Cpu,
+    title: "Umbauten / Modding",
+    price: "Auf Anfrage",
+    text: "individuelle Controller-Umbauten und Modding auf Anfrage – Preis wird nach Absprache festgelegt.",
   },
   {
-    icon: Users,
-    title: "Community",
-    text: "Party-Chat, Freundeslisten und gemeinsame Sessions.",
+    icon: BatteryCharging,
+    title: "Akku-Austausch",
+    price: "ab 19 €",
+    text: "Original-Akkus für DualSense & DualShock – schnell und günstig.",
   },
   {
     icon: ShieldCheck,
-    title: "Geschützter Bereich",
-    text: "Exklusive Inhalte nur für Mitglieder — sicher per Login.",
+    title: "Garantie & Sicherheit",
+    price: "Inklusive",
+    text: "Alle Reparaturen mit 2 Jahren Garantie. Kein Risiko für dich.",
   },
 ];
 
@@ -90,11 +107,20 @@ function Index() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-5 py-20">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map(({ icon: Icon, title, text }) => (
+        <section id="dienstleistungen" className="mx-auto max-w-6xl px-5 py-20">
+          <h2 className="text-3xl font-bold md:text-4xl">Dienstleistungen</h2>
+          <p className="mt-2 text-muted-foreground">
+            Reparaturen rund um deinen Controller – transparent und fair.
+          </p>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map(({ icon: Icon, title, text, price }) => (
               <article key={title} className="glass-panel rounded-2xl p-6">
-                <Icon className="size-6 text-primary" />
+                <div className="flex items-start justify-between gap-4">
+                  <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/15">
+                    <Icon className="size-5 text-primary" />
+                  </span>
+                  <span className="text-sm font-semibold text-primary">{price}</span>
+                </div>
                 <h3 className="mt-4 text-lg font-semibold">{title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{text}</p>
               </article>
@@ -124,6 +150,8 @@ function Index() {
             ))}
           </div>
         </section>
+
+        <Reviews />
       </main>
 
       <footer className="border-t border-border/60 py-8 text-center text-sm text-muted-foreground">
