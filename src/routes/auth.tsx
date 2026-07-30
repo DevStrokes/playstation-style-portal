@@ -12,16 +12,16 @@ import { useSession } from "@/hooks/useSession";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Anmelden — NEXUS Play" },
+      { title: "Anmelden — Tech Doctor Play" },
       {
         name: "description",
         content:
-          "Melde dich bei NEXUS Play an: mit E-Mail, Google oder Apple — und betritt den Mitgliederbereich.",
+          "Melde dich bei Tech Doctor Play an: mit E-Mail, Google oder Apple — und betritt den Mitgliederbereich.",
       },
-      { property: "og:title", content: "Anmelden — NEXUS Play" },
+      { property: "og:title", content: "Anmelden — Tech Doctor Play" },
       {
         property: "og:description",
-        content: "Login mit E-Mail, Google oder Apple für den NEXUS Mitgliederbereich.",
+        content: "Login mit E-Mail, Google oder Apple für den Tech Doctor Mitgliederbereich.",
       },
     ],
   }),
@@ -85,7 +85,7 @@ function AuthPage() {
         <Link to="/" className="mb-8 flex items-center justify-center gap-2">
           <Gamepad2 className="size-5 text-primary" />
           <span className="font-display text-lg font-extrabold uppercase tracking-[0.3em]">
-            Nexus
+            Tech Doctor
           </span>
         </Link>
 

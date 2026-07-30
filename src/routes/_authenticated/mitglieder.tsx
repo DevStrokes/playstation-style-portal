@@ -6,12 +6,12 @@ import { useSession } from "@/hooks/useSession";
 export const Route = createFileRoute("/_authenticated/mitglieder")({
   head: () => ({
     meta: [
-      { title: "Mitgliederbereich — NEXUS Play" },
+      { title: "Mitgliederbereich — Tech Doctor Play" },
       {
         name: "description",
-        content: "Exklusive Inhalte, Trophäen und Downloads für NEXUS Play Mitglieder.",
+        content: "Exklusive Inhalte, Trophäen und Downloads für Tech Doctor Play Mitglieder.",
       },
-      { property: "og:title", content: "Mitgliederbereich — NEXUS Play" },
+      { property: "og:title", content: "Mitgliederbereich — Tech Doctor Play" },
       {
         property: "og:description",
         content: "Exklusive Inhalte, Trophäen und Downloads für Mitglieder.",
