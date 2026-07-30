@@ -7,13 +7,13 @@ import { SiteHeader } from "@/components/SiteHeader";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NEXUS Play — Gaming Hub im Konsolen-Look" },
+      { title: "Tech Doctor Play — Gaming Hub im Konsolen-Look" },
       {
         name: "description",
         content:
-          "NEXUS Play ist der Gaming-Hub mit Bibliothek, Trophäen und geschütztem Mitgliederbereich. Anmeldung optional — per Klick.",
+          "Tech Doctor Play ist der Gaming-Hub mit Bibliothek, Trophäen und geschütztem Mitgliederbereich. Anmeldung optional — per Klick.",
       },
-      { property: "og:title", content: "NEXUS Play — Gaming Hub im Konsolen-Look" },
+      { property: "og:title", content: "Tech Doctor Play — Gaming Hub im Konsolen-Look" },
       {
         property: "og:description",
         content: "Bibliothek, Trophäen und exklusiver Mitgliederbereich. Anmeldung per Klick.",
@@ -73,7 +73,7 @@ function Index() {
               Next Gen
             </span>
             <h1 className="mt-6 max-w-3xl text-5xl font-extrabold leading-[1.05] md:text-7xl">
-              Spiele grenzenlos mit <span className="text-gradient-blue">NEXUS Play</span>
+              Spiele grenzenlos mit <span className="text-gradient-blue">Tech Doctor Play</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
               Deine Bibliothek, deine Trophäen, deine Crew. Stöbere frei — oder melde dich an und
@@ -104,7 +104,7 @@ function Index() {
 
         <section id="games" className="mx-auto max-w-6xl px-5 pb-24">
           <h2 className="text-3xl font-bold md:text-4xl">Im Store</h2>
-          <p className="mt-2 text-muted-foreground">Eine Auswahl aus dem NEXUS Katalog.</p>
+          <p className="mt-2 text-muted-foreground">Eine Auswahl aus dem Tech Doctor Katalog.</p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {games.map((game) => (
               <article
@@ -127,7 +127,7 @@ function Index() {
       </main>
 
       <footer className="border-t border-border/60 py-8 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} NEXUS Play
+        © {new Date().getFullYear()} Tech Doctor Play
       </footer>
     </div>
   );

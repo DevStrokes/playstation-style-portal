@@ -79,12 +79,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NEXUS Play — Gaming Hub" },
+      { title: "Tech Doctor Play — Gaming Hub" },
       {
         name: "description",
-        content: "NEXUS Play: Gaming-Hub im Konsolen-Look mit geschütztem Mitgliederbereich.",
+        content: "Tech Doctor Play: Gaming-Hub im Konsolen-Look mit geschütztem Mitgliederbereich.",
       },
-      { property: "og:title", content: "NEXUS Play — Gaming Hub" },
+      { property: "og:title", content: "Tech Doctor Play — Gaming Hub" },
       {
         property: "og:description",
         content: "Gaming-Hub im Konsolen-Look mit geschütztem Mitgliederbereich.",

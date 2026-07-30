@@ -23,7 +23,7 @@ export function SiteHeader() {
         <Link to="/" className="flex items-center gap-2">
           <Gamepad2 className="size-5 text-primary" />
           <span className="font-display text-lg font-extrabold uppercase tracking-[0.2em]">
-            Nexus
+            Tech Doctor
           </span>
         </Link>
         <nav className="flex items-center gap-2">
