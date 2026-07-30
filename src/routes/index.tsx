@@ -1,9 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Zap, ShieldCheck, Gamepad2, Wrench, Cpu, BatteryCharging } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import { Zap, ShieldCheck, Gamepad2, Wrench, Cpu, BatteryCharging, ClipboardList, PackageCheck, MailCheck, Wrench as WrenchIcon } from "lucide-react";
 import heroImage from "@/assets/hero.jpg";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Reviews } from "@/components/Reviews";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -64,14 +69,60 @@ const services = [
   },
 ];
 
-const games = [
-  { name: "Orbital Drift", genre: "Racing", hue: "from-primary/40" },
-  { name: "Shadow Protocol", genre: "Action", hue: "from-accent/30" },
-  { name: "Neon Arena", genre: "Shooter", hue: "from-primary/30" },
-  { name: "Deep Signal", genre: "Adventure", hue: "from-accent/20" },
+const steps = [
+  {
+    icon: ClipboardList,
+    title: "Anfrage stellen",
+    text: "Beschreibe dein Problem über das Formular. Du erhältst eine Antwort mit Preis und Ablauf.",
+  },
+  {
+    icon: PackageCheck,
+    title: "Controller einschicken",
+    text: "Nach Bestätigung schickst du deinen Controller sicher verpackt an Tech Doctor.",
+  },
+  {
+    icon: WrenchIcon,
+    title: "Reparatur",
+    text: "Dein Controller wird professionell repariert – mit hochwertigen Teilen und 2 Jahren Garantie.",
+  },
+  {
+    icon: MailCheck,
+    title: "Zurück zu dir",
+    text: "Sobald die Reparatur fertig ist, geht dein Controller auf dem Rückweg zu dir nach Hause.",
+  },
 ];
 
 function Index() {
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSending(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") ?? "");
+    const email = String(data.get("email") ?? "");
+    const subject = String(data.get("subject") ?? "");
+    const message = String(data.get("message") ?? "");
+
+    try {
+      const { error } = await supabase.from("contact_requests").insert({
+        name,
+        email,
+        subject,
+        message,
+      });
+      if (error) throw error;
+      setSubmitted(true);
+      form.reset();
+    } catch {
+      alert("Beim Senden ist ein Fehler aufgetreten. Bitte versuche es später erneut.");
+    } finally {
+      setSending(false);
+    }
+  }
+
   return (
     <div className="min-h-screen">
       <SiteHeader />
@@ -102,7 +153,7 @@ function Index() {
                 <a href="#dienstleistungen">Zu den Dienstleistungen</a>
               </Button>
               <Button asChild variant="outlineGlow" size="xl">
-                <a href="mailto:doctortech101@gmail.com">Schreibe eine Anfrage</a>
+                <a href="#kontakt">Schreibe eine Anfrage</a>
               </Button>
             </div>
           </div>
@@ -129,30 +180,85 @@ function Index() {
           </div>
         </section>
 
-        <section id="games" className="mx-auto max-w-6xl px-5 pb-24">
-          <h2 className="text-3xl font-bold md:text-4xl">Im Store</h2>
-          <p className="mt-2 text-muted-foreground">Eine Auswahl aus dem Tech Doctor Katalog.</p>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {games.map((game) => (
-              <article
-                key={game.name}
-                className="group glass-panel overflow-hidden rounded-2xl transition-transform duration-300 hover:-translate-y-1"
-              >
-                <div
-                  className={`h-40 bg-gradient-to-br ${game.hue} to-transparent transition-opacity duration-300 group-hover:opacity-80`}
-                />
-                <div className="p-5">
-                  <h3 className="font-semibold">{game.name}</h3>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                    {game.genre}
-                  </p>
+        <section id="anleitung" className="mx-auto max-w-6xl px-5 py-20">
+          <h2 className="text-3xl font-bold md:text-4xl">So funktioniert's</h2>
+          <p className="mt-2 text-muted-foreground">
+            In vier einfachen Schritten zu deinem reparierten Controller.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map(({ icon: Icon, title, text }, i) => (
+              <div key={title} className="relative glass-panel rounded-2xl p-6">
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="flex size-10 items-center justify-center rounded-full bg-primary text-base font-bold text-primary-foreground">
+                    {i + 1}
+                  </span>
+                  <Icon className="size-5 text-primary" />
                 </div>
-              </article>
+                <h3 className="text-lg font-semibold">{title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{text}</p>
+              </div>
             ))}
           </div>
         </section>
 
         <Reviews />
+
+        <section id="kontakt" className="mx-auto max-w-3xl px-5 py-20">
+          <h2 className="text-3xl font-bold md:text-4xl">Schreibe eine Anfrage</h2>
+          <p className="mt-2 text-muted-foreground">
+            Beschreibe dein Problem – du erhältst eine Antwort mit Preis und Ablauf.
+          </p>
+          {submitted ? (
+            <div className="mt-8 glass-panel rounded-2xl p-8 text-center">
+              <MailCheck className="mx-auto size-10 text-primary" />
+              <h3 className="mt-4 text-xl font-semibold">Anfrage gesendet</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Danke! Ich melde mich so schnell wie möglich bei dir.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="mt-8 glass-panel space-y-5 rounded-2xl p-6">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Name</Label>
+                  <Input id="name" name="name" required placeholder="Dein Name" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">E-Mail</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="deine@email.de"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="subject">Controller / Problem</Label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  required
+                  placeholder="z. B. DualSense – Drift links"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="message">Nachricht</Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  placeholder="Beschreibe dein Problem so genau wie möglich."
+                />
+              </div>
+              <Button type="submit" variant="hero" size="lg" className="w-full" disabled={sending}>
+                {sending ? "Wird gesendet…" : "Anfrage senden"}
+              </Button>
+            </form>
+          )}
+        </section>
       </main>
 
       <footer className="border-t border-border/60 py-12 text-sm text-muted-foreground">
@@ -222,7 +328,7 @@ function Index() {
           </div>
 
           <div className="mt-8 border-t border-border/60 pt-6 text-center">
-            © {new Date().getFullYear()} Techdoctor
+            © {new Date().getFullYear()} Tech Doctor
           </div>
         </div>
       </footer>

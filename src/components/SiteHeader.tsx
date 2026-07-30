@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Gamepad2, LogOut } from "lucide-react";
+import { Gamepad2, LogOut, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/hooks/useSession";
 import { supabase } from "@/integrations/supabase/client";
@@ -41,6 +41,16 @@ export function SiteHeader() {
               <Link to="/auth">Anmelden</Link>
             </Button>
           )}
+          <Button asChild variant="ghost" size="sm">
+            <a
+              href="https://www.instagram.com/techdoctor_beckum/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <Instagram />
+            </a>
+          </Button>
         </nav>
       </div>
     </header>
