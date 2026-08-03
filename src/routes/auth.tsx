@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Gamepad2, Loader2 } from "lucide-react";
+import { Gamepad2, Loader as Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,12 +16,12 @@ export const Route = createFileRoute("/auth")({
       {
         name: "description",
         content:
-          "Melde dich bei Tech Doctor Play an: mit E-Mail, Google oder Apple — und betritt den Mitgliederbereich.",
+          "Melde dich bei Tech Doctor Play an: mit E-Mail oder Google — und betritt den Mitgliederbereich.",
       },
       { property: "og:title", content: "Anmelden — Tech Doctor Play" },
       {
         property: "og:description",
-        content: "Login mit E-Mail, Google oder Apple für den Tech Doctor Mitgliederbereich.",
+        content: "Login mit E-Mail oder Google für den Tech Doctor Mitgliederbereich.",
       },
     ],
   }),
@@ -65,7 +65,7 @@ function AuthPage() {
     }
   }
 
-  async function handleOAuth(provider: "google" | "apple") {
+  async function handleOAuth(provider: "google") {
     setBusy(true);
     const result = await lovable.auth.signInWithOAuth(provider, {
       redirect_uri: window.location.origin,
@@ -100,9 +100,6 @@ function AuthPage() {
           <div className="mt-6 grid gap-3">
             <Button variant="social" size="lg" disabled={busy} onClick={() => handleOAuth("google")}>
               Weiter mit Google
-            </Button>
-            <Button variant="social" size="lg" disabled={busy} onClick={() => handleOAuth("apple")}>
-              Weiter mit Apple
             </Button>
           </div>
 
