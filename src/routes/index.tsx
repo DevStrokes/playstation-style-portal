@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Reviews } from "@/components/Reviews";
-import { supabase } from "@/integrations/supabase/client";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -107,13 +107,19 @@ function Index() {
     const message = String(data.get("message") ?? "");
 
     try {
-      const { error } = await supabase.from("contact_requests").insert({
-        name,
-        email,
-        subject,
-        message,
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "e1f7d22e-c276-4c6f-bea7-7c64c56e193f",
+          name,
+          email,
+          subject,
+          message,
+        }),
       });
-      if (error) throw error;
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message || "Senden fehlgeschlagen");
       setSubmitted(true);
       form.reset();
     } catch {
