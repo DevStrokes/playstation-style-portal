@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Crown, Download, Trophy, Users } from "lucide-react";
+
 import { SiteHeader } from "@/components/SiteHeader";
 import { useSession } from "@/hooks/useSession";
 
