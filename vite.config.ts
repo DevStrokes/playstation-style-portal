@@ -7,4 +7,7 @@ export default defineConfig({
     TanStackRouterVite(),
     react(),
   ],
+  css: {
+    transformer: 'postcss',
+  },
 })
