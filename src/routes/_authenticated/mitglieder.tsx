@@ -21,12 +21,6 @@ export const Route = createFileRoute("/_authenticated/mitglieder")({
   component: MembersArea,
 });
 
-const perks = [
-  { icon: Crown, title: "Early Access", text: "Spiele Betas und Demos vor allen anderen." },
-  { icon: Download, title: "Exklusive Downloads", text: "Skins, Soundtracks und Wallpapers." },
-  { icon: Trophy, title: "Trophäen-Boost", text: "Doppelte Punkte an Wochenenden." },
-  { icon: Users, title: "Private Lobbys", text: "Eigene Server für dich und deine Crew." },
-];
 
 function MembersArea() {
   const { user } = useSession();
