@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Gamepad2, LogOut, Instagram } from "lucide-react";
+import { LogOut, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/hooks/useSession";
+import shieldAsset from "@/assets/tech-doctor-shield.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 
 export function SiteHeader() {
@@ -21,7 +22,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link to="/" className="flex items-center gap-2">
-          <Gamepad2 className="size-5 text-primary" />
+          <img src={shieldAsset.url} alt="Tech Doctor Logo" className="size-8 object-contain" />
           <span className="font-display text-lg font-extrabold uppercase tracking-[0.2em]">
             Tech Doctor
           </span>
