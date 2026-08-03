@@ -7,7 +7,7 @@ export default defineConfig({
     TanStackRouterVite(),
     react(),
   ],
-  css: {
-    transformer: 'postcss',
+  build: {
+    cssMinify: 'esbuild', // Zwingt den Build-Prozess, esbuild statt Lightning CSS zu nutzen
   },
 })
